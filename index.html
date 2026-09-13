@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#050814"><title>JARVES AI</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header><div><h1>JARVES <small>AI</small></h1><p>आपका Personal Voice Assistant</p></div><button id="settings">⚙️</button></header>
+<section class="core"><div id="orb"><b>J</b></div><h2 id="status">तैयार हूँ</h2><p id="hint">माइक दबाकर बोलें</p></section>
+<section id="chat"></section>
+<div class="grid">
+<button data-action="whatsapp">💬 WhatsApp</button><button data-action="youtube">▶️ YouTube</button>
+<button data-action="google">🔎 Google</button><button data-action="settings">📱 Settings</button>
+</div>
+<button id="mic">🎙️</button>
+<footer>JARVES AI • Web APK Edition</footer>
+</div>
+<dialog id="dlg"><div class="box"><h2>JARVES Settings</h2>
+<label>AI Backend URL<input id="api" placeholder="https://your-server.example/api/chat"></label>
+<label class="check"><input id="speak" type="checkbox" checked> जवाब बोलकर सुनाएँ</label>
+<p>API key यहाँ न रखें। अपने secure backend में रखें।</p><button id="save">Save</button><button id="close">Close</button>
+</div></dialog>
+<script src="app.js"></script>
+</body></html>
