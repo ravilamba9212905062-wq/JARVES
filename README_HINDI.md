@@ -1,36 +1,30 @@
-# JARVES AI — Mobile Cloud APK Project
+# JARVES AI — Native Android / Always Listening Project
 
-यह एक **pure HTML/CSS/JavaScript web project** है। इसे ऐसे cloud Android builder में upload करें जो Web App/HTML/PWA को APK में बदलता हो।
+यह project Android Studio/Gradle based native APK के लिए तैयार किया गया है। इसका उद्देश्य:
+- एक ON/OFF switch
+- Foreground Service
+- microphone permission
+- Hindi speech recognition
+- Hindi Text-to-Speech
+- "Hey JARVES" style wake phrase workflow
+- Google / YouTube / WhatsApp / Android Settings खोलने के लिए intents
+- secure AI backend से बातचीत
 
-## APK बनाने का तरीका
-1. ZIP extract करें या builder में ZIP upload करें।
-2. Entry file: `index.html`
-3. App name: `JARVES AI`
-4. Package ID: `com.sahayakai.jarves` (यदि builder पूछे)
-5. Portrait mode रखें।
-6. Microphone permission ON करें।
-7. Build APK.
+## Build
+Android Studio में project खोलें और Gradle sync के बाद APK build करें।
 
-## महत्वपूर्ण: फोन के apps/settings
-Web app अकेले Android के हर app को नहीं खोल सकता। इस project में:
-- WhatsApp: `whatsapp://`
-- Android Settings: Android intent
-- Wi‑Fi/Bluetooth: Android settings intents
-- YouTube/Google: web URLs
+अगर किसी cloud builder में Android/Gradle project import उपलब्ध है, पूरा ZIP upload करें। केवल "HTML to APK" builder में यह native background service काम नहीं करेगा।
 
-अगर आपका cloud builder Android Intent/URL scheme को WebView में allow करता है, ये काम करेंगे। अगर नहीं करता, तो उस builder में Native Android bridge/Capacitor/WebView wrapper चुनें।
+## Important
+Android लगातार microphone listening को background में चलाने के लिए Foreground Service और microphone permission मांगता है। Android की battery/privacy restrictions के कारण इसे पूरी तरह hidden/background process की तरह नहीं चलाया जा सकता।
 
-## "कोई भी ऐप खोलना"
-Android security के कारण web page से मनमाने installed apps की पूरी सूची खोलना संभव नहीं है। Native APK में package-name आधारित Android intents/bridge जोड़ना पड़ेगा।
+यह sample wake phrase को speech-recognition results से पहचानता है; production-quality low-power wake-word engine अलग native wake-word SDK के साथ बेहतर रहेगा।
 
-## AI बातचीत
-Settings में अपना **secure AI backend URL** डालें। POST:
-{"message":"यूज़र का सवाल","language":"hi-IN","assistant":"JARVES"}
+## AI backend
+Settings में backend URL जोड़ें। Backend POST:
+{"message":"...","language":"hi-IN","assistant":"JARVES"}
+और JSON:
+{"reply":"..."}
+दे।
 
-Response:
-{"reply":"AI का जवाब"}
-
-API key frontend में न डालें। Backend में रखें।
-
-## Voice
-Chrome/WebView का SpeechRecognition support आवश्यक है। HTTPS और microphone permission आवश्यक हो सकती है।
+API key APK में न रखें।
